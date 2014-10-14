@@ -152,7 +152,7 @@ class Wrapper(dict):
         self.obj = obj
 
         # Provide python-like access to object attributes.
-        self.update(obj.iteritems())
+        self.update(obj.items())
 
     # Mute the horrific R repr method of rpy2.
     __repr__ = object.__repr__
