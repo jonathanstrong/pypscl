@@ -152,7 +152,12 @@ class Wrapper(dict):
         self.obj = obj
 
         # Provide python-like access to object attributes.
-        self.update(obj.items())
+        if hasattr(obj, 'iteritems'):
+            self.update(obj.iteritems())
+        elif hasattr(obj, 'items'):
+            self.update(obj.items())
+        else:
+            raise Exception("obj has neither items() nor iteritems() methods")
 
     # Mute the horrific R repr method of rpy2.
     __repr__ = object.__repr__
